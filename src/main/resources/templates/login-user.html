@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>Coffe Break</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/coffe_estilo.css}" />
+</head>
+<body>
+
+	<header>
+		<div id="divNavigator">
+			<div id="divLogo">
+				<a href="">
+					<span>Coffee Break</span>
+				</a>	
+			</div>
+
+			<div id="divMenu">
+				<a href="" id="aEstiloLink">Sobre</a>
+			</div>
+		</div>
+	</header>
+			
+	<div id="divForm"><br/>
+		<h1>Login</h1><br/>
+		
+		<form method="post" th:action="@{/login}">
+			<fieldset>	
+				<label>E-mail:</label><br/>
+				<input type="text" name="username"/><br/><br/>
+
+				<label>Senha:</label><br/>
+				<input type="password" name="password"/><br/><br/>
+
+				<input type="submit" value="Entrar"/>
+			</fieldset>
+		</form>
+		
+		<div id="mensagemdeErro" th:if="${msg != null}">
+			<span th:text="${msg}"></span>
+		</div><br/>
+		
+		<input type="button" value="Cadastre-se" th:onclick="'location.href=\'' + @{/public/usuario/new} + '\';'"/><br/><br/>
+		<input type="button" value="Voltar" th:onclick="'location.href=\'' + @{/public/home} + '\';'"/><br/><br/>
+	</div>
+
+</body>
+</head>
+</html>

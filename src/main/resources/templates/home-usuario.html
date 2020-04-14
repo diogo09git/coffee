@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>Coffe Break</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/coffe_estilo.css}" />
+</head>
+
+<body>
+	<header>
+		<div id="divNavigator">
+			<div id="divLogo">
+				<a th:href="@{/public/home}">
+					<span>Coffee Break</span>
+				</a>
+			</div>
+
+			<div id="divMenu">
+				<a id="aEstiloLink" th:href="@{/usuario/edit}">Meus Dados</a>
+				<a id="aEstiloLink" th:href="@{/logout}">Sair</a>
+			</div>
+		</div>
+	</header>
+	
+	<div id="divUsuarioLogado" th:if="${#authentication.principal != 'anonymousUser'}">
+		<span th:text="'Olá, ' + ${#authentication.principal.usuario.nome} + ' !'"></span>
+	</div>
+	
+	<div id="divForm"><br/>
+	
+		<h3>Inserir Novo Item</h3><br/>
+		
+		<div id="mensagemdeErro" th:if="${msg != null}">
+			<span th:text="${msg}"></span>
+		</div>
+
+		<form method="post" th:object="${item}" th:action="${!editMode} ? @{/usuario/item/save} : @{/usuario/edit/save}" >
+			<fieldset>
+			
+				<input type="hidden" th:value="${usuario.id}" name="usuario.id"/>
+				<input type="hidden" th:field="*{id}"/>
+				
+				<label for="tipo">Tipo de Item:</label>
+				<input type="text" name="tipo" id="tipo" th:field="*{tipo}"/><br/>
+				<div id="mensagemdeErro2" th:if="${#fields.hasErrors('tipo')}">
+					<span th:errors="*{tipo}"></span>
+				</div><br/>
+
+				<label for="torra">Tipo de Torra:</label>
+				<input type="text" name="torra" id="torra" th:field="*{torra}"/><br/>
+				<div id="mensagemdeErro2" th:if="${#fields.hasErrors('torra')}">
+					<span th:errors="*{torra}"></span>
+				</div><br/>
+
+				<label for="qnt">Quantidade:</label>
+				<input type="text" name="qnt" id="qnt" th:field="*{qnt}"/><br/>
+				<div id="mensagemdeErro2" th:if="${#fields.hasErrors('qnt')}">
+					<span th:errors="*{qnt}"></span>
+				</div><br/>
+				
+				<label for="data">Data:</label>
+				<input type="date" name="data" id="data" th:field="*{data}"/><br/>
+				<div id="mensagemdeErro2" th:if="${#fields.hasErrors('data')}">
+					<span th:errors="*{data}"></span>
+				</div><br/>
+
+				<input type="submit" th:value="${!editMode} ? 'Inserir' : 'Alterar'"/>
+			</fieldset>
+
+		</form><br/>
+
+		<div th:if="${itens.size() > 0}">
+			<h3>Itens Cadastrados</h3><br/>
+			<table>
+				<tr>
+					<th>Tipo</th>
+					<th>Torra</th>
+					<th>Qnt/kg</th>
+					<th>Data</th>
+					<th>Usuário</th>
+					<th>...</th>
+				</tr>
+				
+				<tr th:each="item : ${itens}">
+					<td><span th:text="${item.tipo}"></span></td>
+					<td><span th:text="${item.torra}"></span></td>
+					<td><span th:text="${item.qnt}"></span></td>
+					<td><span th:text="${#temporals.format(item.data, 'dd/MM/yyyy')}"></span></td>
+					<td><span th:text="${item.usuario.nome}"></span>
+					
+					<td><input type="button" value="Excluir" 
+						th:onclick="'location.href=\'' + @{/usuario/item/remove} + '?itemId=' + ${item.id} + '\';'"/>
+						<input type="button" value="Editar" 
+						th:onclick="'location.href=\'' + @{/usuario/item/edit} + '?itemId=' + ${item.id} + '\';'"/></td>	
+				</tr>
+			</table>
+		</div><br/>
+	</div>		
+
+</body>
+</html>	

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>Coffe Break</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/coffe_estilo.css}" />
+</head>
+
+<body>
+	<header>
+		<div id="divNavigator">
+			<div id="divLogo">
+				<a href="">
+					<span>Coffee Break</span>
+				</a>
+			</div>
+
+			<div id="divMenu">
+				<a id="aEstiloLink" th:if="${#authentication.principal != 'anonymousUser'}" 
+					th:href="@{/usuario/home}">Home</a>
+				<a id="aEstiloLink" th:if="${#authentication.principal == 'anonymousUser'}" 
+					th:href="@{/login}">Entre</a>
+				<a href="" id="aEstiloLink">Sobre</a>
+			</div>
+		</div>
+	</header>
+
+	<div id="divConteudo">
+		<img th:src="@{/imagens/image-coffee.jpg}" style="width: 600px; max-height: 400px;" />
+		<div id="divParagra">
+			<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+			 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+			 It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, 
+			 and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+			
+		</div>	
+		
+	</div>
+	
+</body>
+</html>
