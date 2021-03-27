@@ -18,18 +18,13 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.personalp.coffeebreak.domain.usuario.Usuario;
 
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
 
 @SuppressWarnings("serial")
 @Entity
-@Getter
-@Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Item implements Serializable{
 	
 	@Id
-	@EqualsAndHashCode.Include
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
@@ -52,4 +47,48 @@ public class Item implements Serializable{
 	@NotNull(message = "Adicione uma data")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate data;
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public String getTorra() {
+		return torra;
+	}
+
+	public void setTorra(String torra) {
+		this.torra = torra;
+	}
+
+	public String getQnt() {
+		return qnt;
+	}
+
+	public void setQnt(String qnt) {
+		this.qnt = qnt;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public LocalDate getData() {
+		return data;
+	}
+
+	public void setData(LocalDate data) {
+		this.data = data;
+	}
+	
+	public Integer getId() {
+		return id;
+	}
 }

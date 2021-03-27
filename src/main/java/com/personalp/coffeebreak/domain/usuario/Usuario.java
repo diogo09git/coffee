@@ -16,18 +16,13 @@ import com.personalp.coffeebreak.domain.item.Item;
 import com.personalp.coffeebreak.util.StringUtils;
 
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
 
 @SuppressWarnings("serial")
 @Entity
-@Getter
-@Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Usuario implements Serializable{
 	
 	@Id
-	@EqualsAndHashCode.Include
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
@@ -53,4 +48,49 @@ public class Usuario implements Serializable{
 	public void encryptPassword() {
 		this.senha = StringUtils.encrypt(this.senha);
 	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getSobrenome() {
+		return sobrenome;
+	}
+
+	public void setSobrenome(String sobrenome) {
+		this.sobrenome = sobrenome;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	public Set<Item> getItens() {
+		return itens;
+	}
+
+	public void setItens(Set<Item> itens) {
+		this.itens = itens;
+	}
+	
+	public Integer getId() {
+		return id;
+	}
+	
 }
