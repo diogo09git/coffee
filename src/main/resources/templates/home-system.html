@@ -22,10 +22,11 @@
 
 			<div id="divMenu">
 				<a id="aEstiloLink" th:if="${#authentication.principal != 'anonymousUser'}" 
-					th:href="@{/usuario/home}">Home</a>
+					th:href="@{/usuario/home}">Home
+				</a>
 				<a id="aEstiloLink" th:if="${#authentication.principal == 'anonymousUser'}" 
-					th:href="@{/login}">Entre</a>
-				<a href="" id="aEstiloLink">Sobre</a>
+					th:href="@{/login}">Entrar
+				</a>
 			</div>
 		</div>
 	</header>
