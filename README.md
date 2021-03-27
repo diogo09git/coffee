@@ -3,6 +3,7 @@
 Projeto simples com finalidade de praticar as operações básicas utilizadas em bases de dados relacionais.
 
 ## Preview
+<img src="/src/main/resources/static/imagens/login.png"/>
 
 ## Tecnologias
 
